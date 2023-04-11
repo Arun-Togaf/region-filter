@@ -9,11 +9,12 @@ Steps to run the application
 
 1. Import the Maven project in IDE after cloning or downloading the project 
 
-2. Run as a spring boot application. Endpoints for testing : 
+2. Run as a spring boot application. 
+   Endpoints for testing : 
 
-  http://localhost:8080/ip-ranges
+   http://localhost:8080/ip-ranges
   
-  http://localhost:8080/ip-ranges?region=US
+   http://localhost:8080/ip-ranges?region=US
   
 3. Use the following commands to build and run the application on Docker : 
 
