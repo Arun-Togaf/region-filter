@@ -22,4 +22,8 @@ Steps to run the application
 
    docker run -it -p 8080:8080 region-filter
    
+ 4. GitHub Actions has been configured to build and test this application : 
+   
+    https://github.com/Arun-Togaf/region-filter/actions/runs/4672864481
+   
    
