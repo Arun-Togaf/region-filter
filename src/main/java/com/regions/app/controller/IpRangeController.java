@@ -39,9 +39,11 @@ public class IpRangeController {
 		logger.info("In getIpRanges(), endpoint : /ip-ranges");
 
 		// Read the AWS IP range data from the URL
-		URL url = new URL(AWS_IP_RANGES_URL);
+		URL awsIpRangesUrl = new URL(AWS_IP_RANGES_URL);
+		
+		logger.info("AWS IP range URL : " +AWS_IP_RANGES_URL);
 
-		InputStream inputStream = url.openStream();
+		InputStream inputStream = awsIpRangesUrl.openStream();
 
 		// parse the JSON data using javax.json
 		JsonReader reader = Json.createReader(inputStream);
@@ -49,7 +51,7 @@ public class IpRangeController {
 		reader.close();
 		inputStream.close();
 
-		StringBuilder result = new StringBuilder();
+		StringBuilder validIpRange = new StringBuilder();
 
 		// filter the IP range based on the selected region
 		rootObject.getJsonArray(PREFIXES).forEach(ipRangeObject -> {
@@ -58,11 +60,13 @@ public class IpRangeController {
 			String prefixRegion = ipRange.get(REGION2).toString();
 			if (region != null
 					&& (region.equals(REGIONS_ALL) || prefixRegion.toLowerCase().contains(region.toLowerCase()))) {
-				result.append(ipPrefix).append("\n");
+				validIpRange.append(ipPrefix).append("\n");
 			}
 		});
-
-		return result.toString();
+		
+		logger.info("ip-range values : " +validIpRange.toString());
+		
+		return validIpRange.toString();
 	}
 
 }
